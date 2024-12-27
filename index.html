@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            transition: background-color 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .bstyle {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background: linear-gradient(45deg, #007bff, #6f42c1);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: b 2s infinite;
+            position: relative;
+            outline: none;
+        }
+        @keyframes b {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+        .bstyle:hover {
+            background: linear-gradient(45deg, #0056b3, #5a3e9d);
+            animation: float 0.5s ease-in-out infinite alternate;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bstyle:active {
+            background: linear-gradient(45deg, #004085, #4a2c7a);
+            transform: translateY(0);
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .bstyle::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ff0000, #0000ff, #ff0000);
+            background-size: 400%;
+            z-index: -1;
+            animation: out 20s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .bstyle:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes out {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 400% 0;
+            }
+        }
+        .bstyle::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            animation: outlineBox 1.5s linear infinite;
+        }
+
+        @keyframes outlineBox {
+            0% {
+                clip-path: inset(0 100% 100% 0);
+            }
+
+            25% {
+                clip-path: inset(0 0 100% 0);
+            }
+
+            50% {
+                clip-path: inset(0 0 0 0);
+            }
+
+            75% {
+                clip-path: inset(100% 0 0 0);
+            }
+
+            100% {
+                clip-path: inset(100% 100% 0 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="bstyle" id="bstyle">Change Background Color</button>
+
+    <script>
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        document.getElementById('bstyle').addEventListener('click', function () {
+            document.body.style.backgroundColor = getRandomColor();
+        });
+    </script>
+
+</body>
+
+</html>
